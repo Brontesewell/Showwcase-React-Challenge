@@ -11,7 +11,7 @@ function LandingPage({history}: RouteComponentProps): JSX.Element {
     
     return (
       <div className="LandingPage">
-                            <img src={Logo} alt="logo" id="logo"/>
+                    <img src={Logo} alt="logo" id="logo"/>
                     <h4 id="tag-line">Connect, share, showcase projects, and get hired!</h4>
                     <form onSubmit={handleSubmit}>
 
