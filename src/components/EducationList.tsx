@@ -67,6 +67,16 @@ class EducationList extends React.Component<IProps, IState> {
         grade: this.state.grade
     }]
     console.log(Education)
+    this.setState({
+        openModal: false,
+        awards: [],
+        degree: "",
+        description: "",
+        endyear: "",
+        school: "",
+        startyear: "",
+        grade: "",
+    })
 }
 
 
