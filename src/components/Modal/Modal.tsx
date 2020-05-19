@@ -30,9 +30,10 @@ interface IProps {
   onCancel:  () => void;
   confirmText: String;
   children: any
+  onConfirm: any;
 }
 
-const Modal: FC<IProps> = ({ title, canCancel, canConfirm, onCancel, confirmText, children }: IProps) => {
+const Modal: FC<IProps> = ({ onConfirm, title, canCancel, canConfirm, onCancel, confirmText, children }: IProps) => {
   return (
    
   <div className="modal">
@@ -45,7 +46,7 @@ const Modal: FC<IProps> = ({ title, canCancel, canConfirm, onCancel, confirmText
         <button className="button" onClick={onCancel}>
           Cancel
         </button>
-        <button className="button" >
+        <button className="button" onClick={onConfirm}>
             {confirmText}
         </button>
     </ModalActions>

@@ -8,12 +8,12 @@ interface IState {
     openModal: Boolean, 
     selectedEducation: null,
     awards: any,
-    degree: String,
-    description: String,
-    endyear: String,
-    school: String,
-    startyear: String,
-    grade: String,
+    degree: string,
+    description: any,
+    endyear: string,
+    school: string,
+    startyear: string,
+    grade: string,
 }
 
 class EducationList extends React.Component<IProps, IState> {
@@ -32,15 +32,75 @@ class EducationList extends React.Component<IProps, IState> {
         startyear: '',
         grade: '', 
       };
+      this.addAwardsClick = this.addAwardsClick.bind(this)
     }
 
-    onChange = (e: React.FormEvent<HTMLInputElement>) => {
+
+
+  addAwardsClick(e: React.FormEvent<HTMLFormElement>) {
+      let awardsValue = (document.getElementById("awards") as HTMLInputElement).value;
+      if (awardsValue!== "") {
+            var newAward = {
+                text: awardsValue,
+                key: Math.random()
+            }; 
+          console.log(newAward)
+          this.setState((prevState) => {
+             return { 
+              awards: prevState.awards.concat(newAward) 
+              };
+          });
+          (document.getElementById("awards") as HTMLInputElement).value = "";
+       }
+      e.preventDefault();
+  }
+
+  onConfirmClick =(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const Education = [{
+        awards: this.state.awards,
+        degree: this.state.degree,
+        description: this.state.description,
+        endyear: this.state.endyear,
+        school: this.state.school,
+        startyear: this.state.startyear,
+        grade: this.state.grade
+    }]
+    console.log(Education)
+}
+
+
+    onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = e.currentTarget.value;
-        this.setState({
-            school: newValue
-        })
+            this.setState({
+                description : newValue
+            })
     }
 
+    onHandleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        const newValue = e.currentTarget.value;
+        if (e.currentTarget.name === "school"){
+            this.setState({
+                school : newValue
+            })
+        } else if (e.currentTarget.name === "grade"){
+            this.setState({
+                grade : newValue
+            })
+        } else if (e.currentTarget.name === "startyear"){
+            this.setState({
+                startyear : newValue
+            })
+        } else if (e.currentTarget.name === "endyear"){
+            this.setState({
+                endyear : newValue
+            })
+        } else if (e.currentTarget.name === "degree"){
+            this.setState({
+                degree : newValue
+            })
+        }
+    }
 
     createEducationHandler = () => {
         this.setState({ openModal: true });
@@ -75,58 +135,60 @@ class EducationList extends React.Component<IProps, IState> {
                 canCancel
                 canConfirm
                 onCancel={this.modalCancelHandler}
+                onConfirm={this.onConfirmClick}
                 confirmText="Confirm"
                 >
-                     <form >
+                     <form>
 
-                            {/* School Search Input + Label */}
-                            <div className="form-control">
-                            <label htmlFor="school">School: </label>
-                            <input type="text" name="school" />
-                            {/* <p>{this.props.searchSchools ? (this.props.searchSchools.slice(0, 10)).map(i => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p> */}
-                            </div>
+                        {/* School Search Input + Label */}
+                        <div className="form-control">
+                        <label htmlFor="school">School: </label>
+                        <input type="text" name="school" onChange={this.onHandleChange}/>
+                        {/* <p>{this.props.searchSchools ? (this.props.searchSchools.slice(0, 10)).map(i => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p> */}
+                        </div>
 
-                            {/* Degree Input + Label */}
-                            <div className="form-control">
-                            <label htmlFor="degree">Degree: </label>
-                            <input type="text" name="degree" />
-                            </div>
+                        {/* Degree Input + Label */}
+                        <div className="form-control">
+                        <label htmlFor="degree">Degree: </label>
+                        <input type="text" name="degree" onChange={this.onHandleChange}/>
+                        </div>
 
-                            {/* Grade Input + Label */}
-                            <div className="form-control">
-                            <label htmlFor="grade">Average Grade: </label>
-                            <input type="text" name="grade" placeholder='e.g. 98%'/>
-                            </div>
+                        {/* Grade Input + Label */}
+                        <div className="form-control">
+                        <label htmlFor="grade">Average Grade: </label>
+                        <input type="text" name="grade" placeholder='e.g. 98%' onChange={this.onHandleChange}/>
+                        </div>
 
-                            {/* Awards Input + Label */}
-                            <div className="form-control">    
-                            {/* <form onSubmit={this.addAwardsClick}> */}
-                            <label htmlFor="awards">Awards: </label>
-                            <input type="text" name="awards" />
-                            <button id="add-awards" type="submit">Add</button>
-                            {/* </form>
-                            {this.state.awards.length > 0 ? this.state.awards.map(i => <a>{i.text}, </a>): null} */}
-                            </div>
+                        {/* Awards Input + Label */}
+                        <div className="form-control">    
+                        <form onSubmit={this.addAwardsClick}>
+                        <label htmlFor="awards">Awards: </label>
+                        <input type="text" name="awards" id="awards"/>
+                        <button id="add-awards" type="submit" >Add</button>
+                        </form>
+                        {this.state.awards.length > 0 ? this.state.awards.map((i:any) => (<a>{i.text}, </a>)): null}
+                        {/* <a>{i.text: string}, </a> */}
+                        </div>
 
-                            {/* Start Yr Input + Label */}
-                            <div className="form-control">
-                            <label htmlFor="date">Start Year: </label>
-                            <input type="text" name="startyear" placeholder='e.g. August 2019'  />
-                            </div>
+                        {/* Start Yr Input + Label */}
+                        <div className="form-control">
+                        <label htmlFor="date">Start Year: </label>
+                        <input type="text" name="startyear" placeholder='e.g. August 2019'  onChange={this.onHandleChange}/>
+                        </div>
 
-                            {/* End Yr Input + Label */}
-                            <div className="form-control">
-                            <label htmlFor="date">End Year: </label>
-                            <input type="text" name="endyear" placeholder='e.g. August 2019'   />
-                            </div>
+                        {/* End Yr Input + Label */}
+                        <div className="form-control">
+                        <label htmlFor="date">End Year: </label>
+                        <input type="text" name="endyear" placeholder='e.g. August 2019' onChange={this.onHandleChange} />
+                        </div>
 
-                            {/* Description Yr Input + Label */}
-                            <div className="form-control">
-                            <label htmlFor="description">Description: </label>
-                            <textarea name="description"  />
-                            </div>
+                        {/* Description Yr Input + Label */}
+                        <div className="form-control">
+                        <label htmlFor="description">Description: </label>
+                        <textarea name="description" onChange={this.onDescriptionChange}/>
+                        </div>
 
-                            </form>
+                        </form>
 
                 </Modal>)}
         
