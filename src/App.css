@@ -36,3 +36,175 @@
     transform: rotate(360deg);
   }
 }
+
+
+#tag-line{
+  font-weight: 450;
+  margin-left: 33%;
+}
+
+#logo{
+  width: 50%;
+  margin-top: 10%;
+  margin-left: 24.4%;
+}
+
+#logo-profile{
+  width: 50%;
+  margin-left: 24.4%;
+}
+
+
+#landing-page-input{
+  margin-top: 4%;
+  margin-left: 31%;
+}
+
+.button {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+#add-awards{
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 4px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#add-awards:hover {
+  background-color: #a6a6a6;
+  color: black;
+}
+
+
+#firstname{
+  padding: 10px;
+  border-radius: 5px;
+  border-color:  #555555;
+}
+
+#lastname{
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 19px;
+  border-radius: 5px;
+  border-color:  #555555;
+}
+
+#welcome{
+  margin-top: 5%;
+  text-align: center;
+}
+
+#back-button{
+  margin-top: 20%;
+  margin-left: 45%;
+}
+
+
+.left-column {
+  float: left;
+  width: 26%;
+  padding: 5px;
+  background-color: #a6a6a6;
+  min-height: 500px;
+  margin-left: 5%;
+  margin-bottom: 100px;
+}
+
+
+.right-column {
+  float: right;
+  width: 60%;
+  padding: 5px;
+  background-color: #a6a6a6;
+  min-height: 500px;
+  margin-right: 5%;
+  margin-bottom: 100px;
+}
+
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#education-title{
+  text-align: center;
+}
+
+#new-education-btn{
+  margin-left: 17%;
+}
+
+
+.form-control input {
+  padding: 3px;
+  margin: 5px;
+  border-radius: 5px;
+  border-color:  grey;
+}
+
+
+.form-control label {
+  font-weight: 600;
+}
+
+.welcome-title-box{
+  text-align: center;
+  margin-top: 25%;
+}
+
+
+#side-nav-titles:hover{
+  cursor: pointer;
+  color: #fff;
+}
+
+#side-nav-titles{
+  padding: 5px;
+}
+
+.school-select{
+  color: black;
+  background-color: darkgray;
+  border-style: solid;
+  border-width: thin;
+  border-color: black;
+  padding: 5px;
+  margin-top: -10px;
+}
+
+.school-select:hover{
+  color: white;
+  background-color: #5a5b61;
+  border-style: solid;
+  border-width: medium;
+  border-color: black;
+  cursor: pointer;
+}
