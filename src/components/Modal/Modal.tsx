@@ -28,17 +28,18 @@ interface IProps {
   canCancel: any
   canConfirm: any
   onCancel:  () => void;
-  confirmText: String
+  confirmText: String;
+  children: any
 }
 
-const Modal: FC<IProps> = ({ title, canCancel, canConfirm, onCancel, confirmText }: IProps) => {
+const Modal: FC<IProps> = ({ title, canCancel, canConfirm, onCancel, confirmText, children }: IProps) => {
   return (
    
   <div className="modal">
     <ModalHeader>
     <ModalHeaderText >{title}</ModalHeaderText>
     </ModalHeader>
-    <ModalContent ><form><input type="text" ></input></form> </ModalContent>
+    <ModalContent >{children} </ModalContent>
 
     <ModalActions>
         <button className="button" onClick={onCancel}>
