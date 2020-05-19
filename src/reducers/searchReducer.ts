@@ -1,4 +1,6 @@
 import {
+  ShowwcaseState,
+  ShowwcaseActionTypes,
   SET_LAST_NAME,
   SET_FIRST_NAME,
   SET_EDUCATION,
@@ -7,24 +9,26 @@ import {
   CLEAR_ALL_SCHOOLS,
 } from '../actions/types';
 
-const initialState = {
+const initialState: ShowwcaseState = {
     firstName: '',
     lastName: '',
     searchSchools: [],
-    education: [
-      {
-        school: '', 
-        degree: '', 
-        startYear: '', 
-        endYear: '', 
-        awards: [],
-        grade: '',
-        description: '' ,
-      }
-    ],
+    education: [],
+    //   {
+    //     school: '', 
+    //     degree: '', 
+    //     startYear: '', 
+    //     endYear: '', 
+    //     awards: [],
+    //     grade: '',
+    //     description: '',
+    //   }
+    // ],
 };
 
-export default function(state = initialState, action) {
+export default function showwcaseReducer(
+  state = initialState, 
+  action: ShowwcaseActionTypes): ShowwcaseState{
   switch (action.type) {
 
     case SET_LAST_NAME:

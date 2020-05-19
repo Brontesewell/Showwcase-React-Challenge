@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import searchReducer from './searchReducer';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   showwcase: searchReducer
 });
+
+export type RootState = ReturnType<typeof rootReducer>
