@@ -10,8 +10,9 @@ const Container = styled.div`
     background: rgba(0, 0, 0, 0.75);
 `
 
-const backdrop = () => ( 
-    <Container></Container>
-)
-
-export default backdrop;
+function Backdrop () {
+    return(
+        <Container></Container>
+    )
+}
+export default Backdrop;

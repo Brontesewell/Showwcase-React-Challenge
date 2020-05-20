@@ -176,7 +176,7 @@ class EducationList extends React.Component<Props, State> {
           }
         )
         .catch(err => console.log(err));
-      };
+    };
 
 
     handleClickedSchool = (clickedSchool: any) => {
@@ -185,7 +185,7 @@ class EducationList extends React.Component<Props, State> {
           school: clickedSchool.name,
           schoolsSearch: []
         })
-      }
+    }
   
   
     setSelectedEducation = (clickedEducation: Object) => {
@@ -308,4 +308,4 @@ const mapStateToProps = (state: any) => ({
   
 export default connect(mapStateToProps,
     { setEducation, clearSelectedEducation, setSelectedEducation}
-    )(EducationList);
+)(EducationList);
