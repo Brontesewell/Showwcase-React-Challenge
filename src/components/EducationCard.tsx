@@ -52,13 +52,13 @@ function EducationCard (props: IProps) {
     props.clearSelectedEducation()
   }
 
-  const {school, degree, grade, description, startyear, awards, endyear} = props.selectedEducation
+  const {school, degree, grade, description, startYear, awards, endYear} = props.selectedEducation
   return (
     <EducationCard>
 
     <Title>{degree} at {school}</Title>
 
-    <StartEndYear>{startyear} - {endyear}</StartEndYear>
+    <StartEndYear>{startYear} - {endYear}</StartEndYear>
 
      <Grade><strong>Average Grade:</strong> {grade} </Grade>
 

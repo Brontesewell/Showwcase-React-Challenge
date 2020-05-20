@@ -29,7 +29,7 @@ export const CLEAR_ALL_SCHOOLS = 'CLEAR_ALL_SCHOOLS';
 
 interface FetchAllSchoolsAction {
   type: typeof FETCH_ALL_SCHOOLS
-  data: any
+  data: object
 }
 
 interface ClearSchoolSearchAction {

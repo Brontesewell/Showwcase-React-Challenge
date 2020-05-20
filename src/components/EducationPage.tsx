@@ -14,7 +14,7 @@ function EducationPage(props: StateProps) {
     return (
       <div className="EducationPage">
         <img src={Logo} alt="logo" id="logo-profile"/>
-        {props.firstName == "" ? props.history.push('/') :  <h3 id="welcome">Welcome to {props.firstName} {props.lastName}'s Education Page</h3>}
+        {props.firstName === "" ? props.history.push('/') :  <h3 id="welcome">Welcome to {props.firstName} {props.lastName}'s Education Page</h3>}
         <EducationList />
       </div>
     );

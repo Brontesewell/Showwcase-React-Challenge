@@ -5,16 +5,17 @@ import EducationCard from './EducationCard'
 import { connect } from 'react-redux'
 import {
     setEducation,
-    // fetchAllSchools,
+    fetchAllSchools,
     clearSchoolSearch,
 } from '../actions/showwcaseActions';
-// import EducationState from '../actions/types'
+import { any } from 'prop-types'
 
 interface IProps {
     setEducation: typeof setEducation,
     clearSchoolSearch: typeof clearSchoolSearch,
+    fetchAllSchools: typeof fetchAllSchools,
     education: any,
-    searchSchools: []
+    searchSchools: any
 }
 
 interface IState {
@@ -27,6 +28,7 @@ interface IState {
     awards: any;
     grade: string;
     description: string;
+    schoolsSearch: any
 }
 
 class EducationList extends React.Component<IProps, IState> {
@@ -43,53 +45,55 @@ class EducationList extends React.Component<IProps, IState> {
         school: '',
         startYear: '',
         grade: '', 
+        schoolsSearch: [],
       };
       this.addAwardsClick = this.addAwardsClick.bind(this)
     }
 
 
 
-  addAwardsClick(e: React.FormEvent<HTMLFormElement>) {
-      let awardsValue = (document.getElementById("awards") as HTMLInputElement).value;
-      if (awardsValue!== "") {
-            var newAward = {
-                text: awardsValue,
-                key: Math.random()
-            }; 
-          console.log(newAward)
-          this.setState((prevState) => {
-             return { 
-              awards:  prevState.awards.concat(newAward)
-              };
-          });
-          (document.getElementById("awards") as HTMLInputElement).value = "";
-       }
-      e.preventDefault();
-  }
-
-  onConfirmClick =(e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const Education = {
-        awards: this.state.awards,
-        degree: this.state.degree,
-        description: this.state.description,
-        startYear: this.state.startYear,
-        endYear: this.state.endYear,
-        school: this.state.school,
-        grade: this.state.grade
+    addAwardsClick(e: React.FormEvent<HTMLFormElement>) {
+        let awardsValue = (document.getElementById("awards") as HTMLInputElement).value;
+        if (awardsValue!== "") {
+              var newAward = {
+                    text: awardsValue,
+                  key: Math.random()
+              }; 
+            console.log(newAward)
+            this.setState((prevState) => {
+               return { 
+                awards:  prevState.awards.concat(newAward)
+                };
+            });
+            (document.getElementById("awards") as HTMLInputElement).value = "";
+        }
+        e.preventDefault();
     }
-    this.props.setEducation(Education)
-    this.setState({
-        openModal: false,
-        awards: [],
-        degree: "",
-        description: "",
-        endYear: "",
-        school: "",
-        startYear: "",
-        grade: "",
-    })
-}
+
+
+    onConfirmClick =(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const Education = {
+            awards: this.state.awards,
+            degree: this.state.degree,
+            description: this.state.description,
+            startYear: this.state.startYear,
+            endYear: this.state.endYear,
+            school: this.state.school,
+            grade: this.state.grade
+        }
+        this.props.setEducation(Education)
+        this.setState({
+            openModal: false,
+            awards: [],
+            degree: "",
+            description: "",
+            endYear: "",
+            school: "",
+            startYear: "",
+            grade: "",
+        })
+    }
 
 
     onDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -124,20 +128,34 @@ class EducationList extends React.Component<IProps, IState> {
         }
     }
 
-    // handleSchoolChange = (e) => {
-    //     const {name, value} = e.target
-    //     this.props.fetchAllSchools(value)
-    //     this.setState({
-    //         school: value
-    //     })
-    // }
+    handleSchoolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const schoolInput = e.target.value
+        this.fetchAllSchool(schoolInput)
+        this.setState({
+            school: schoolInput
+        })
+    }
 
-    // handleClickedSchool = (clickedSchool: Object) => {
-    //     this.setState({
-    //       school: clickedSchool.name
-    //     })
-    //     this.props.clearSchoolSearch()
-    //   }
+
+    fetchAllSchool = (subject: string) => {
+        fetch(`http://universities.hipolabs.com/search?name=${subject}`)
+        .then(res => res.json())
+        .then((data: any) => {
+                this.setState({
+                    schoolsSearch: data
+                })
+          }
+        )
+        .catch(err => console.log(err));
+      };
+
+    handleClickedSchool = (clickedSchool: any) => {
+        console.log(clickedSchool)
+        this.setState({
+          school: clickedSchool.name,
+          schoolsSearch: []
+        })
+      }
   
   
     setSelectedEducation = (clickedEducation: Object) => {
@@ -149,18 +167,18 @@ class EducationList extends React.Component<IProps, IState> {
 
     createEducationHandler = () => {
         this.setState({ openModal: true });
-      };
+    };
   
     modalCancelHandler = () => {
         this.setState({ openModal: false, selectedEducation: null });
-      };
+    };
   
-      clearSelectedEducation = () => {
+    clearSelectedEducation = () => {
           this.setState({ selectedEducation: null });
-      };
+    };
       
     render() {
-       console.log(this.props.education)
+       console.log(this.props.fetchAllSchools)
         const { awards, degree, description, endYear, school, grade, startYear} = this.state
         return (
             <div className="EducationList">
@@ -191,10 +209,10 @@ class EducationList extends React.Component<IProps, IState> {
 
                             {/* School Search Input + Label */}
                             <div className="form-control">
-                                <label htmlFor="school">School: </label>
-                                <input type="text" name="school" onChange={this.onHandleChange}/>
-                                {/* <p>{this.props.searchSchools ? (this.props.searchSchools.slice(0, 10)).map(i => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p> */}
-                            </div>
+                                  <label htmlFor="school">School: </label>
+                                  <input type="text" name="school" value={school} onChange={this.handleSchoolChange} />
+                                  <p>{this.state.schoolsSearch ? (this.state.schoolsSearch.slice(0, 10)).map((i: any) => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p>
+                              </div>
 
                             {/* Degree Input + Label */}
                             <div className="form-control">
@@ -255,5 +273,5 @@ const mapStateToProps = (state: any) => ({
   
   
 export default connect(mapStateToProps,
-    { setEducation, clearSchoolSearch }
+    { setEducation, fetchAllSchools, clearSchoolSearch }
     )(EducationList);
