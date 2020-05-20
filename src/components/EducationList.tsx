@@ -24,7 +24,6 @@ interface IProps {
 
 interface IState {
     openModal: Boolean, 
-    // selectedEducation: any,
     school: string; 
     degree: string; 
     startYear: string; 
@@ -32,7 +31,8 @@ interface IState {
     awards: any;
     grade: string;
     description: string;
-    schoolsSearch: any
+    schoolsSearch: any;
+    loading: Boolean
 }
 
 class EducationList extends React.Component<IProps, IState> {
@@ -41,7 +41,6 @@ class EducationList extends React.Component<IProps, IState> {
       super(props);
       this.state = {
         openModal: false, 
-        // selectedEducation: null,
         awards: [],
         degree: '',
         description: '',
@@ -50,6 +49,7 @@ class EducationList extends React.Component<IProps, IState> {
         startYear: '',
         grade: '', 
         schoolsSearch: [],
+        loading: false
       };
       this.addAwardsClick = this.addAwardsClick.bind(this)
     }
@@ -136,7 +136,8 @@ class EducationList extends React.Component<IProps, IState> {
         const schoolInput = e.target.value
         this.fetchAllSchool(schoolInput)
         this.setState({
-            school: schoolInput
+            school: schoolInput,
+            loading: true,
         })
     }
 
@@ -146,7 +147,8 @@ class EducationList extends React.Component<IProps, IState> {
         .then(res => res.json())
         .then((data: any) => {
                 this.setState({
-                    schoolsSearch: data
+                    schoolsSearch: data,
+                    loading: false
                 })
           }
         )
@@ -165,9 +167,6 @@ class EducationList extends React.Component<IProps, IState> {
   
     setSelectedEducation = (clickedEducation: Object) => {
           this.props.setSelectedEducation(clickedEducation)
-        // this.setState({
-        //     selectedEducation: clickedEducation
-        // });
     };
 
     createEducationHandler = () => {
@@ -217,8 +216,8 @@ class EducationList extends React.Component<IProps, IState> {
                             <div className="form-control">
                                   <label htmlFor="school">School: </label>
                                   <input type="text" name="school" value={school} onChange={this.handleSchoolChange} />
-                                  <p>{this.state.schoolsSearch ? (this.state.schoolsSearch.slice(0, 10)).map((i: any) => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p>
-                              </div>
+                                  <p>{this.state.loading ? <div className="loader"></div> : (this.state.schoolsSearch.slice(0, 10)).map((i: any) => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>)}</p>
+                            </div>
 
                             {/* Degree Input + Label */}
                             <div className="form-control">
