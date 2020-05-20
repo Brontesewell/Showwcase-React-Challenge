@@ -1,45 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Showwcase Developer Challenge
 
-## Available Scripts
+## General idea
 
-In the project directory, you can run:
+We hope to evaluate your programming skills in a project that has a very similar stack to ours, a preview of what you will be working with at Showwcase. 
 
-### `yarn start`
+## What you will be building
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Your challenge is to create a simple web app in the technology you are applying to work in. Your task is to simulate how a user will be able to input their educational background into their Showwcase profile page. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+You should not just implement the most basic solution. This is a chance to show off your abilities, creativity, and impress.
 
-### `yarn test`
+## Requirements
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- We use the create-react-app typescript template, you can find instructions here:
+[https://create-react-app.dev/docs/adding-typescript/](https://create-react-app.dev/docs/adding-typescript/)
+- Users must be able to enter as many educational experiences as they please;
+- When the user is typing the name of the school they went, it should be auto completed using an API call.
+- Users must be able to enter the following information: Name of School, Degree, Field of study, Start year, End Year (Or expected), Grade, a Description field, and anything else you wish to add.
 
-### `yarn build`
+## Guidance and instructions
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- This is a free API that has data on Universities worldwide, feel free to use it or if you find something better make sure to use it. 
+[https://github.com/Hipo/university-domains-list-api](https://github.com/Hipo/university-domains-list-api)
+- Here are a few technologies we use at Showwcase and we would prefer if you used them as well should you see the need for them:
+    - Styled Components: [https://styled-components.com/](https://styled-components.com/)
+    - Styled System is a nice helper to Styled Components: [https://styled-system.com/](https://styled-system.com/)
+    - Hooks: [https://reactjs.org/docs/hooks-intro.html](https://reactjs.org/docs/hooks-intro.html)
+    - Redux: [https://redux.js.org/](https://redux.js.org/)
+    - React Modal: [https://github.com/reactjs/react-modal](https://github.com/reactjs/react-modal)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## What we will be looking for
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Functionality
+- Code Format
+- Project Structure
+- Scalability
+- Maintainability
+- Use of industry best practices
 
-### `yarn eject`
+Some specific things that we may be looking for:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Typescript if you know it
+- Atomic Design in React
+- Correct implementation of a state manager
+- Correct implementation of a navigation solution
+- Componentization
+- Communication in the repo and/or code
+- Best practices with API calls and data
+- Separation of concerns between business and UI logic
+- Frequent commits
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Goals
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Implement the screens based off the wireframes and api above using advanced techniques and industry best practices for your platform. Note that the wireframes may not be complete, so use your best judgment for UI/UX implementation. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Introduction and Home screen:
 
-## Learn More
+- Static text
+- Input field for user
+- Enter button takes user to the Main screen
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Image of Introduction Screen](https://github.com/Showwcase/Showwcase-Intern-React-Challenge/blob/master/MacBook_-_2.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# Showwcase-Intern-React-Challenge-Bronte
+## Main screen
+
+- Dynamic text
+- Button to open up new modal to add a new education component
+- Side panel acts as a bookmark menu of the list of education added
+- Each new education added should appear above the previous, i.e. descending order of most recent
+
+![Image of Main Screen](https://github.com/Showwcase/Showwcase-Intern-React-Challenge/blob/master/MacBook_-_3.jpg)
+
+
+
+## Add education modal
+
+- Background Main screen should dim down when modal opens
+- Modal allows the user to add the relevant information and save it.
+
+![Image of Modal Screen](https://github.com/Showwcase/Showwcase-Intern-React-Challenge/blob/master/MacBook_-_4.jpg)
+
+© 2020 Showcase Creators Inc. All rights reserved. Certain information contained herein is derived from information which is protected by copyrights held by Showcase Creators Inc. This code challenge, including any parts of it, cannot be duplicated, distributed, copied, modified, used to make a derivative work or used in any way without the prior written consent of Showcase Creators Inc.
