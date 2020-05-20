@@ -46,7 +46,7 @@ function EducationCard (props: IProps) {
     margin-bottom: 5%;
   `;
 
-  const deleteClick = (event: React.ChangeEvent<HTMLInputElement>)=> {
+  const deleteClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     event.preventDefault();
     props.deleteStudy(props.selectedEducation)
     props.clearSelectedEducation()
@@ -62,12 +62,12 @@ function EducationCard (props: IProps) {
 
      <Grade><strong>Average Grade:</strong> {grade} </Grade>
 
-    <AwardTitle>Awards: </AwardTitle> {awards.map((a: any) => <ul> <li>{a.text}</li></ul>)}
+    <AwardTitle>Awards: </AwardTitle> {awards.map((a: any) => <AwardDiv><ul> <li>{a.text}</li></ul></AwardDiv>)}
     
     <Description><strong>Description:</strong> {description}</Description>
     
+    <button className="button" onClick={deleteClick}>Delete</button>
     
-    {/* <button className="button" onClick={props.deleteClick}>Delete</button> */}
     </EducationCard>
   );
 };
