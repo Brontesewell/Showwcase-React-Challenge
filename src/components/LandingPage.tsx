@@ -18,10 +18,8 @@ interface StateProps {
   history : History
 }
 
-export type UpdateMessageParam = React.SyntheticEvent<{ value: string }>;
 
 class LandingPage extends React.Component<StateProps> {
-// function LandingPage({history}: RouteComponentProps, props: StateProps): JSX.Element {
     state = {
       firstName: "",
       lastName: ""
