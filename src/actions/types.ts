@@ -3,7 +3,7 @@ export interface EducationState {
     degree: string; 
     startYear: string; 
     endYear: string; 
-    awards: [];
+    awards: any;
     grade: string;
     description: string;
 }

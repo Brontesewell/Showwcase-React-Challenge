@@ -1,8 +1,6 @@
 import React from 'react';
 import Logo from '../logo.png'
-import { connect, ConnectedProps } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux';
-import {Link} from "react-router-dom";
+import { connect } from 'react-redux'
 import {
   setFirstName,
   setLastName,

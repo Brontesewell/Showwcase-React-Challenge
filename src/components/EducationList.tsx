@@ -1,35 +1,46 @@
 import React from 'react'
 import Modal from './Modal/Modal'
 import Backdrop from './Backdrop/Backdrop'
+import { connect } from 'react-redux'
+import {
+    setEducation,
+    // fetchAllSchools,
+    clearSchoolSearch,
+} from '../actions/showwcaseActions';
+// import EducationState from '../actions/types'
+
 interface IProps {
+    setEducation: typeof setEducation,
+    clearSchoolSearch: typeof clearSchoolSearch,
+    education: object,
+    searchSchools: []
 }
 
 interface IState {
     openModal: Boolean, 
     selectedEducation: null,
-    awards: any,
-    degree: string,
-    description: any,
-    endyear: string,
-    school: string,
-    startyear: string,
-    grade: string,
+    school: string; 
+    degree: string; 
+    startYear: string; 
+    endYear: string; 
+    awards: any;
+    grade: string;
+    description: string;
 }
 
 class EducationList extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
       super(props);
-  
       this.state = {
         openModal: false, 
         selectedEducation: null,
         awards: [],
         degree: '',
         description: '',
-        endyear: '',
+        endYear: '',
         school: '',
-        startyear: '',
+        startYear: '',
         grade: '', 
       };
       this.addAwardsClick = this.addAwardsClick.bind(this)
@@ -47,7 +58,7 @@ class EducationList extends React.Component<IProps, IState> {
           console.log(newAward)
           this.setState((prevState) => {
              return { 
-              awards: prevState.awards.concat(newAward) 
+              awards:  prevState.awards.concat(newAward)
               };
           });
           (document.getElementById("awards") as HTMLInputElement).value = "";
@@ -57,24 +68,24 @@ class EducationList extends React.Component<IProps, IState> {
 
   onConfirmClick =(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const Education = [{
+    const Education = {
         awards: this.state.awards,
         degree: this.state.degree,
         description: this.state.description,
-        endyear: this.state.endyear,
+        startYear: this.state.startYear,
+        endYear: this.state.endYear,
         school: this.state.school,
-        startyear: this.state.startyear,
         grade: this.state.grade
-    }]
-    console.log(Education)
+    }
+    this.props.setEducation(Education)
     this.setState({
         openModal: false,
         awards: [],
         degree: "",
         description: "",
-        endyear: "",
+        endYear: "",
         school: "",
-        startyear: "",
+        startYear: "",
         grade: "",
     })
 }
@@ -97,13 +108,13 @@ class EducationList extends React.Component<IProps, IState> {
             this.setState({
                 grade : newValue
             })
-        } else if (e.currentTarget.name === "startyear"){
+        } else if (e.currentTarget.name === "startYear"){
             this.setState({
-                startyear : newValue
+                startYear : newValue
             })
-        } else if (e.currentTarget.name === "endyear"){
+        } else if (e.currentTarget.name === "endYear"){
             this.setState({
-                endyear : newValue
+                endYear : newValue
             })
         } else if (e.currentTarget.name === "degree"){
             this.setState({
@@ -125,7 +136,8 @@ class EducationList extends React.Component<IProps, IState> {
       };
       
     render() {
-        const { awards, degree, description, endyear, school, grade, startyear} = this.state
+       console.log(this.props.education)
+        const { awards, degree, description, endYear, school, grade, startYear} = this.state
     return (
       <div className="EducationList">
         <div className="row">
@@ -183,13 +195,13 @@ class EducationList extends React.Component<IProps, IState> {
                         {/* Start Yr Input + Label */}
                         <div className="form-control">
                         <label htmlFor="date">Start Year: </label>
-                        <input type="text" name="startyear" placeholder='e.g. August 2019'  onChange={this.onHandleChange}/>
+                        <input type="text" name="startYear" placeholder='e.g. August 2019'  onChange={this.onHandleChange}/>
                         </div>
 
                         {/* End Yr Input + Label */}
                         <div className="form-control">
                         <label htmlFor="date">End Year: </label>
-                        <input type="text" name="endyear" placeholder='e.g. August 2019' onChange={this.onHandleChange} />
+                        <input type="text" name="endYear" placeholder='e.g. August 2019' onChange={this.onHandleChange} />
                         </div>
 
                         {/* Description Yr Input + Label */}
@@ -209,4 +221,12 @@ class EducationList extends React.Component<IProps, IState> {
   }
 }
   
-  export default EducationList;
+const mapStateToProps = (state: any) => ({
+    education: state.showwcase.education,
+    searchSchools: state.showwcase.searchSchools,
+  });
+  
+  
+export default connect(mapStateToProps,
+    { setEducation, clearSchoolSearch }
+    )(EducationList);
