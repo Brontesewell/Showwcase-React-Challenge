@@ -19,7 +19,7 @@ interface IProps {
 
 interface IState {
     openModal: Boolean, 
-    selectedEducation: null,
+    selectedEducation: any,
     school: string; 
     degree: string; 
     startYear: string; 
@@ -140,18 +140,18 @@ class EducationList extends React.Component<IProps, IState> {
     //   }
   
   
-      setSelectedEducation = (clickedEducation: Object) => {
+    setSelectedEducation = (clickedEducation: Object) => {
           console.log(clickedEducation)
-        // this.setState({
-        //     selectedEducation: clickedEducation
-        // });
-      };
+        this.setState({
+            selectedEducation: clickedEducation
+        });
+    };
 
     createEducationHandler = () => {
         this.setState({ openModal: true });
       };
   
-      modalCancelHandler = () => {
+    modalCancelHandler = () => {
         this.setState({ openModal: false, selectedEducation: null });
       };
   
@@ -162,83 +162,84 @@ class EducationList extends React.Component<IProps, IState> {
     render() {
        console.log(this.props.education)
         const { awards, degree, description, endYear, school, grade, startYear} = this.state
-    return (
-      <div className="EducationList">
-        <div className="row">
+        return (
+            <div className="EducationList">
+                <div className="row">
               
-              <div className="left-column">
-               <h2 id="education-title">Education</h2>
-               {this.state.selectedEducation !== null ? <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> : null}
-               {this.props.education.map((education: any) => <h3 id="side-nav-titles" onClick={() => this.setSelectedEducation(education)}>{education.school}</h3> ).reverse()}
-              </div>
+                    <div className="left-column">
+                        <h2 id="education-title">Education</h2>
+                        {this.state.selectedEducation !== null ? <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> : null}
+                        {this.props.education.map((education: any) => <h3 id="side-nav-titles" onClick={() => this.setSelectedEducation(education)}>{education.school}</h3> ).reverse()}
+                    </div>
 
-              <div className="right-column">
-              { this.state.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
-                       :
-                        <EducationCard selectedEducation={this.state.selectedEducation} clearSelectedEducation={this.clearSelectedEducation}/> } 
-            {(this.state.openModal ) && <Backdrop />}
-            {this.state.openModal && (<Modal
-                title="Add Education"
-                canCancel
-                canConfirm
-                onCancel={this.modalCancelHandler}
-                onConfirm={this.onConfirmClick}
-                confirmText="Confirm"
-                >
-                     <form>
+                    <div className="right-column">
+                        { this.state.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
+                        :
+                    <EducationCard selectedEducation={this.state.selectedEducation} clearSelectedEducation={this.clearSelectedEducation}/> } 
+                    
+                    
+                    {(this.state.openModal ) && <Backdrop />}
+                    {this.state.openModal && (<Modal
+                        title="Add Education"
+                        canCancel
+                        canConfirm
+                        onCancel={this.modalCancelHandler}
+                        onConfirm={this.onConfirmClick}
+                        confirmText="Confirm"
+                        >
+                        <form>
 
-                        {/* School Search Input + Label */}
-                        <div className="form-control">
-                        <label htmlFor="school">School: </label>
-                        <input type="text" name="school" onChange={this.onHandleChange}/>
-                        {/* <p>{this.props.searchSchools ? (this.props.searchSchools.slice(0, 10)).map(i => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p> */}
-                        </div>
+                            {/* School Search Input + Label */}
+                            <div className="form-control">
+                                <label htmlFor="school">School: </label>
+                                <input type="text" name="school" onChange={this.onHandleChange}/>
+                                {/* <p>{this.props.searchSchools ? (this.props.searchSchools.slice(0, 10)).map(i => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>) : null}</p> */}
+                            </div>
 
-                        {/* Degree Input + Label */}
-                        <div className="form-control">
-                        <label htmlFor="degree">Degree: </label>
-                        <input type="text" name="degree" onChange={this.onHandleChange}/>
-                        </div>
+                            {/* Degree Input + Label */}
+                            <div className="form-control">
+                                <label htmlFor="degree">Degree: </label>
+                                <input type="text" name="degree" onChange={this.onHandleChange}/>
+                            </div>
 
-                        {/* Grade Input + Label */}
-                        <div className="form-control">
-                        <label htmlFor="grade">Average Grade: </label>
-                        <input type="text" name="grade" placeholder='e.g. 98%' onChange={this.onHandleChange}/>
-                        </div>
+                            {/* Grade Input + Label */}
+                            <div className="form-control">
+                                <label htmlFor="grade">Average Grade: </label>
+                                <input type="text" name="grade" placeholder='e.g. 98%' onChange={this.onHandleChange}/>
+                            </div>
 
-                        {/* Awards Input + Label */}
-                        <div className="form-control">    
-                        <form onSubmit={this.addAwardsClick}>
-                        <label htmlFor="awards">Awards: </label>
-                        <input type="text" name="awards" id="awards"/>
-                        <button id="add-awards" type="submit" >Add</button>
-                        </form>
-                        {this.state.awards.length > 0 ? this.state.awards.map((i:any) => (<a>{i.text}, </a>)): null}
-                        {/* <a>{i.text: string}, </a> */}
-                        </div>
+                            {/* Awards Input + Label */}
+                            <div className="form-control">    
+                                <form onSubmit={this.addAwardsClick}>
+                                <label htmlFor="awards">Awards: </label>
+                                <input type="text" name="awards" id="awards"/>
+                                <button id="add-awards" type="submit" >Add</button>
+                                </form>
+                                {this.state.awards.length > 0 ? this.state.awards.map((i:any) => (<a>{i.text}, </a>)): null}
+                            </div>
 
-                        {/* Start Yr Input + Label */}
-                        <div className="form-control">
-                        <label htmlFor="date">Start Year: </label>
-                        <input type="text" name="startYear" placeholder='e.g. August 2019'  onChange={this.onHandleChange}/>
-                        </div>
+                            {/* Start Yr Input + Label */}
+                            <div className="form-control">
+                                <label htmlFor="date">Start Year: </label>
+                                <input type="text" name="startYear" placeholder='e.g. August 2019'  onChange={this.onHandleChange}/>
+                            </div>
 
-                        {/* End Yr Input + Label */}
-                        <div className="form-control">
-                        <label htmlFor="date">End Year: </label>
-                        <input type="text" name="endYear" placeholder='e.g. August 2019' onChange={this.onHandleChange} />
-                        </div>
+                            {/* End Yr Input + Label */}
+                            <div className="form-control">
+                                <label htmlFor="date">End Year: </label>
+                                <input type="text" name="endYear" placeholder='e.g. August 2019' onChange={this.onHandleChange} />
+                            </div>
 
-                        {/* Description Yr Input + Label */}
-                        <div className="form-control">
-                        <label htmlFor="description">Description: </label>
-                        <textarea name="description" onChange={this.onDescriptionChange}/>
-                        </div>
+                            {/* Description Yr Input + Label */}
+                            <div className="form-control">
+                                <label htmlFor="description">Description: </label>
+                                <textarea name="description" onChange={this.onDescriptionChange}/>
+                            </div>
 
-                        </form>
+                            </form>
 
-                </Modal>)}
-        
+                    </Modal>)}
+            
             </div>
         </div>
 

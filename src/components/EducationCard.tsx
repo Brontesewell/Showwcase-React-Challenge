@@ -52,24 +52,23 @@ function EducationCard (props: IProps) {
     props.clearSelectedEducation()
   }
 
-//   const {school, degree, grade, description, startyear, awards, endyear} = props.selectedEducation
+  const {school, degree, grade, description, startyear, awards, endyear} = props.selectedEducation
   return (
-      <h1>Hello</h1>
-    // <EducationCard>
+    <EducationCard>
 
-    // <Title>{degree} at {school}</Title>
+    <Title>{degree} at {school}</Title>
 
-    // <StartEndYear>{startyear} - {endyear}</StartEndYear>
+    <StartEndYear>{startyear} - {endyear}</StartEndYear>
 
-    //  <Grade><strong>Average Grade:</strong> {grade} </Grade>
+     <Grade><strong>Average Grade:</strong> {grade} </Grade>
 
-    // <AwardTitle>Awards: </AwardTitle> {awards.map(a => <AwardDiv mt={-20}><ul> <li>{a.text}</li></ul></AwardDiv>)}
+    <AwardTitle>Awards: </AwardTitle> {awards.map((a: any) => <ul> <li>{a.text}</li></ul>)}
     
-    // <Description><strong>Description:</strong> {description}</Description>
+    <Description><strong>Description:</strong> {description}</Description>
     
     
-    // <button className="button" onClick={deleteClick}>Delete</button>
-    // </EducationCard>
+    {/* <button className="button" onClick={props.deleteClick}>Delete</button> */}
+    </EducationCard>
   );
 };
 
