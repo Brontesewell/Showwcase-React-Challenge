@@ -104,28 +104,6 @@
 }
 
 
-.left-column {
-  float: left;
-  width: 26%;
-  padding: 5px;
-  background-color: #a6a6a6;
-  min-height: 500px;
-  margin-left: 5%;
-  margin-bottom: 100px;
-}
-
-
-.right-column {
-  float: right;
-  width: 60%;
-  padding: 5px;
-  background-color: #a6a6a6;
-  min-height: 500px;
-  margin-right: 5%;
-  margin-bottom: 100px;
-}
-
-
 .row::after {
   content: "";
   clear: both;
@@ -222,8 +200,8 @@
 }
 
 .loader {
-  border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 10px solid #3498db; /* Blue */
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
   border-radius: 50%;
   margin-top: 20px;
   width: 30px;

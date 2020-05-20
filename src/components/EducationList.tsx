@@ -36,6 +36,26 @@ interface State {
 const Button = styled.button<ColorProps>`
   ${color}
 `
+const LeftColumn = styled.div`
+    float: left;
+    width: 26%;
+    padding: 5px;
+    background-color: #a6a6a6;
+    min-height: 500px;
+    margin-left: 5%;
+    margin-bottom: 100px;
+`;
+
+const RightColumn = styled.div`
+    float: right;
+    width: 60%;
+    padding: 5px;
+    background-color: #a6a6a6;
+    min-height: 500px;
+    margin-right: 5%;
+    margin-bottom: 100px;
+`;
+  
 
 class EducationList extends React.Component<Props, State> {
 
@@ -200,13 +220,13 @@ class EducationList extends React.Component<Props, State> {
             <div className="EducationList">
                 <div className="row">
               
-                    <div className="left-column">
+                    <LeftColumn>
                         <h2 id="education-title">Education</h2>
                         {this.props.selectedEducation !== null ? <Button type="submit" color="white" bg="black" className="button" id="new-education-btn" onClick={this.createEducationHandler}>Add New Education</Button> : null}
                         {this.props.education.map((education: any) => <h3 id="side-nav-titles" onClick={() => this.setSelectedEducation(education)}>{education.school}</h3> ).reverse()}
-                    </div>
+                    </LeftColumn> 
 
-                    <div className="right-column">
+                    <RightColumn>
                         { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><h4><i>Let's Get Started ↓</i></h4><Button type="submit" color="white" bg="black" className="button" onClick={this.createEducationHandler}>Add New Education</Button></div> 
                         : <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
                     
@@ -272,7 +292,7 @@ class EducationList extends React.Component<Props, State> {
                             </div>
                     </Modal>)}
             
-            </div>
+            </RightColumn>
         </div>
 
       </div>
