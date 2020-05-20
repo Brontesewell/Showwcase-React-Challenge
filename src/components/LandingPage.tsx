@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Logo from '../logo.png'
 import { connect } from 'react-redux'
 import {
@@ -8,7 +8,7 @@ import {
 import { History } from 'history';
 import styled from 'styled-components'
 import { color, ColorProps } from 'styled-system'
-
+import React, { useState } from "react";
 
 interface StateProps {
   firstName: string,
@@ -36,57 +36,87 @@ const LastNameInput = styled.input`
 `;
 
 
-class LandingPage extends React.Component<StateProps> {
-    state = {
-      firstName: "",
-      lastName: ""
+// class LandingPage extends React.Component<StateProps> {
+//     state = {
+//       firstName: "",
+//       lastName: ""
+//     };
+
+//     handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+//         event.preventDefault();
+//         this.props.setFirstName(this.state.firstName)
+//         this.props.setLastName(this.state.lastName)
+//         this.props.history.push('/profile')
+//     };
+
+//     handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
+//       const newValue = e.currentTarget.value;
+//       if (e.currentTarget.name === "firstName"){
+//           this.setState({
+//             firstName : newValue
+//           })
+//         } else if (e.currentTarget.name === "lastName") {
+//           this.setState({
+//             lastName : newValue
+//           })
+//       }
+//     }
+
+//     render() {
+//       const {firstName, lastName} = this.state
+//     return (
+//       <div className="LandingPage">
+//                     <img src={Logo} alt="logo" id="logo"/>
+//                     <h4 id="tag-line">Connect, share, showcase projects, and get hired!</h4>
+//                     <form onSubmit={this.handleSubmit}>
+
+//                         <div id="landing-page-input">
+//                             <FirstNameInput type='text' name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></FirstNameInput>
+//                             <LastNameInput type='text' name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></LastNameInput>
+//                             <Button type="submit" color="white" bg="black" className="button">Submit</Button>
+//                         </div>
+//                 </form>
+//       </div>
+//     );
+//     };
+//   };
+
+
+
+  function LandingPage(props: StateProps) {
+    const [firstName, setFName] = useState("");
+    const [lastName, setLName] = useState("");
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+              event.preventDefault();
+              props.setFirstName(firstName)
+              props.setLastName(lastName)
+              props.history.push('/profile')
     };
 
-    handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        this.props.setFirstName(this.state.firstName)
-        this.props.setLastName(this.state.lastName)
-        this.props.history.push('/profile')
-    };
-
-    handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
-      const newValue = e.currentTarget.value;
-      if (e.currentTarget.name === "firstName"){
-          this.setState({
-            firstName : newValue
-          })
-        } else if (e.currentTarget.name === "lastName") {
-          this.setState({
-            lastName : newValue
-          })
-      }
-    }
-
-    render() {
-      const {firstName, lastName} = this.state
-    return (
-      <div className="LandingPage">
+      return (
+             <div className="LandingPage">
                     <img src={Logo} alt="logo" id="logo"/>
                     <h4 id="tag-line">Connect, share, showcase projects, and get hired!</h4>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={handleSubmit}>
 
                         <div id="landing-page-input">
-                            <FirstNameInput type='text' name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></FirstNameInput>
-                            <LastNameInput type='text' name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></LastNameInput>
+                            <FirstNameInput type='text' name="firstName" placeholder='First Name' value={firstName} onChange={e => setFName(e.target.value)}></FirstNameInput>
+                            <LastNameInput type='text' name="lastName" placeholder='Last Name' value={lastName} onChange={e => setLName(e.target.value)}></LastNameInput>
                             <Button type="submit" color="white" bg="black" className="button">Submit</Button>
                         </div>
                 </form>
       </div>
-    );
-    };
-  };
-
-  const mapStateToProps = (state: any) => ({
-    firstName: state.showwcase.firstName,
-    lastName: state.showwcase.lastName, 
-  });
-  
-  export default connect(
-    mapStateToProps,
-    { setFirstName, setLastName }
-  )(LandingPage);
+      );
+    }
+    
+    const mapStateToProps = (state: any) => ({
+      firstName: state.showwcase.firstName,
+      lastName: state.showwcase.lastName, 
+    });  
+    
+    
+    export default connect(
+      mapStateToProps,
+      { setFirstName, setLastName }
+    )(LandingPage);
