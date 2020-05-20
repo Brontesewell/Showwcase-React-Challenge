@@ -5,20 +5,15 @@ import EducationCard from './EducationCard'
 import { connect } from 'react-redux'
 import {
     setEducation,
-    fetchAllSchools,
-    clearSchoolSearch,
     setSelectedEducation,
     clearSelectedEducation,
 } from '../actions/showwcaseActions';
 
 interface IProps {
     setEducation: typeof setEducation,
-    clearSchoolSearch: typeof clearSchoolSearch,
-    fetchAllSchools: typeof fetchAllSchools,
     setSelectedEducation: typeof setSelectedEducation,
     clearSelectedEducation: typeof clearSelectedEducation,
     education: any,
-    searchSchools: any,
     selectedEducation: any
 }
 
@@ -157,7 +152,6 @@ class EducationList extends React.Component<IProps, IState> {
 
 
     handleClickedSchool = (clickedSchool: any) => {
-        // console.log(clickedSchool)
         (document.getElementById("school") as HTMLInputElement).value = clickedSchool.name;
         this.setState({
           school: clickedSchool.name,
@@ -270,11 +264,10 @@ class EducationList extends React.Component<IProps, IState> {
   
 const mapStateToProps = (state: any) => ({
     education: state.showwcase.education,
-    searchSchools: state.showwcase.searchSchools,
     selectedEducation: state.showwcase.selectedEducation
 });
   
   
 export default connect(mapStateToProps,
-    { setEducation, fetchAllSchools, clearSelectedEducation, setSelectedEducation, clearSchoolSearch }
+    { setEducation, clearSelectedEducation, setSelectedEducation}
     )(EducationList);
