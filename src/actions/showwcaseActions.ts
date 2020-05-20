@@ -7,7 +7,9 @@ import {
   FETCH_ALL_SCHOOLS,
   CLEAR_ALL_SCHOOLS,
   DELETE_STUDY,
+  SET_SELECTED_EDUCATION,
   EducationState,
+  CLEAR_SELECTED_EDUCATION,
   ShowwcaseActionTypes} from './types';
 
   import { ThunkAction, ThunkDispatch } from 'redux-thunk'
@@ -58,5 +60,19 @@ export function setEducation(educationObj: EducationState): ShowwcaseActionTypes
   return{ 
     type: SET_EDUCATION, 
     data: educationObj
+  };
+}
+
+export function setSelectedEducation(school: object): ShowwcaseActionTypes {
+  return{ 
+    type: SET_SELECTED_EDUCATION, 
+    data: school
+  };
+}
+
+export function clearSelectedEducation(): ShowwcaseActionTypes {
+  return{ 
+    type: CLEAR_SELECTED_EDUCATION, 
+    data: null
   };
 }

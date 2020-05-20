@@ -7,20 +7,24 @@ import {
     setEducation,
     fetchAllSchools,
     clearSchoolSearch,
+    setSelectedEducation,
+    clearSelectedEducation,
 } from '../actions/showwcaseActions';
-import { any } from 'prop-types'
 
 interface IProps {
     setEducation: typeof setEducation,
     clearSchoolSearch: typeof clearSchoolSearch,
     fetchAllSchools: typeof fetchAllSchools,
+    setSelectedEducation: typeof setSelectedEducation,
+    clearSelectedEducation: typeof clearSelectedEducation,
     education: any,
-    searchSchools: any
+    searchSchools: any,
+    selectedEducation: any
 }
 
 interface IState {
     openModal: Boolean, 
-    selectedEducation: any,
+    // selectedEducation: any,
     school: string; 
     degree: string; 
     startYear: string; 
@@ -37,7 +41,7 @@ class EducationList extends React.Component<IProps, IState> {
       super(props);
       this.state = {
         openModal: false, 
-        selectedEducation: null,
+        // selectedEducation: null,
         awards: [],
         degree: '',
         description: '',
@@ -149,6 +153,7 @@ class EducationList extends React.Component<IProps, IState> {
         .catch(err => console.log(err));
       };
 
+
     handleClickedSchool = (clickedSchool: any) => {
         console.log(clickedSchool)
         this.setState({
@@ -159,10 +164,10 @@ class EducationList extends React.Component<IProps, IState> {
   
   
     setSelectedEducation = (clickedEducation: Object) => {
-          console.log(clickedEducation)
-        this.setState({
-            selectedEducation: clickedEducation
-        });
+          this.props.setSelectedEducation(clickedEducation)
+        // this.setState({
+        //     selectedEducation: clickedEducation
+        // });
     };
 
     createEducationHandler = () => {
@@ -170,15 +175,16 @@ class EducationList extends React.Component<IProps, IState> {
     };
   
     modalCancelHandler = () => {
-        this.setState({ openModal: false, selectedEducation: null });
+        this.props.clearSelectedEducation()
+        this.setState({ openModal: false});
     };
   
     clearSelectedEducation = () => {
-          this.setState({ selectedEducation: null });
+          this.props.clearSelectedEducation()
     };
       
     render() {
-       console.log(this.props.fetchAllSchools)
+       console.log(this.props.selectedEducation)
         const { awards, degree, description, endYear, school, grade, startYear} = this.state
         return (
             <div className="EducationList">
@@ -186,14 +192,14 @@ class EducationList extends React.Component<IProps, IState> {
               
                     <div className="left-column">
                         <h2 id="education-title">Education</h2>
-                        {this.state.selectedEducation !== null ? <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> : null}
+                        {this.props.selectedEducation !== null ? <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> : null}
                         {this.props.education.map((education: any) => <h3 id="side-nav-titles" onClick={() => this.setSelectedEducation(education)}>{education.school}</h3> ).reverse()}
                     </div>
 
                     <div className="right-column">
-                        { this.state.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
+                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
                         :
-                    <EducationCard selectedEducation={this.state.selectedEducation} clearSelectedEducation={this.clearSelectedEducation}/> } 
+                    <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
                     
                     
                     {(this.state.openModal ) && <Backdrop />}
@@ -269,9 +275,10 @@ class EducationList extends React.Component<IProps, IState> {
 const mapStateToProps = (state: any) => ({
     education: state.showwcase.education,
     searchSchools: state.showwcase.searchSchools,
+    selectedEducation: state.showwcase.selectedEducation
 });
   
   
 export default connect(mapStateToProps,
-    { setEducation, fetchAllSchools, clearSchoolSearch }
+    { setEducation, fetchAllSchools, clearSelectedEducation, setSelectedEducation, clearSchoolSearch }
     )(EducationList);

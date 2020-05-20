@@ -14,8 +14,8 @@ export interface ShowwcaseState {
     lastName: string;
     searchSchools: any,
     education: EducationState[];
+    selectedEducation: any
 }
-
 
 
 export const FETCH_ALL_SCHOOLS = 'FETCH_ALL_SCHOOLS';
@@ -25,6 +25,8 @@ export const SET_FIRST_NAME = 'SET_FIRST_NAME';
 export const SET_LAST_NAME = 'SET_LAST_NAME';
 export const SET_EDUCATION = 'SET_EDUCATION';
 export const CLEAR_ALL_SCHOOLS = 'CLEAR_ALL_SCHOOLS';
+export const SET_SELECTED_EDUCATION = 'SET_SELECTED_EDUCATION';
+export const CLEAR_SELECTED_EDUCATION = 'CLEAR_SELECTED_EDUCATION';
 
 
 interface FetchAllSchoolsAction {
@@ -58,4 +60,15 @@ interface SetEducationAction {
 }
   
 
-export type ShowwcaseActionTypes = FetchAllSchoolsAction | ClearSchoolSearchAction | DeleteStudyAction | SetFirstNameAction | SetLastNameAction | SetEducationAction
+interface SetSelectedEducationAction {
+    type: typeof SET_SELECTED_EDUCATION
+    data: any
+}
+
+interface ClearEducationAction {
+    type: typeof CLEAR_SELECTED_EDUCATION
+    data: null
+}
+  
+
+export type ShowwcaseActionTypes = FetchAllSchoolsAction | ClearSchoolSearchAction | DeleteStudyAction | SetFirstNameAction | SetLastNameAction | SetEducationAction | SetSelectedEducationAction | ClearEducationAction

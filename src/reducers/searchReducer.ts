@@ -7,6 +7,8 @@ import {
   DELETE_STUDY,
   FETCH_ALL_SCHOOLS,
   CLEAR_ALL_SCHOOLS,
+  CLEAR_SELECTED_EDUCATION,
+  SET_SELECTED_EDUCATION,
 } from '../actions/types';
 
 const initialState: ShowwcaseState = {
@@ -14,16 +16,7 @@ const initialState: ShowwcaseState = {
     lastName: '',
     searchSchools: [],
     education: [],
-    //   {
-    //     school: '', 
-    //     degree: '', 
-    //     startYear: '', 
-    //     endYear: '', 
-    //     awards: [],
-    //     grade: '',
-    //     description: '',
-    //   }
-    // ],
+    selectedEducation: null
 };
 
 export default function showwcaseReducer(
@@ -50,6 +43,12 @@ export default function showwcaseReducer(
     case DELETE_STUDY:
       const deletedArray = state.education.filter(m => m !== action.data)
       return {...state, education: deletedArray}
+
+    case SET_SELECTED_EDUCATION:
+      return {...state, selectedEducation: action.data}
+
+    case CLEAR_SELECTED_EDUCATION:
+        return {...state, selectedEducation: null}
 
     default:
       return state;

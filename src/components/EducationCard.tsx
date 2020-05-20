@@ -72,5 +72,9 @@ function EducationCard (props: IProps) {
   );
 };
 
+const mapStateToProps = (state: any) => ({
+  selectedEducation: state.showwcase.selectedEducation
+});
 
-export default connect(null, {deleteStudy})(EducationCard);
+
+export default connect(mapStateToProps, {deleteStudy})(EducationCard);
