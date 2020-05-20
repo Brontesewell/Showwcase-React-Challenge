@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Logo from '../logo.png'
 import EducationList from './EducationList'
 import { History } from 'history';
+import styled from 'styled-components'
 
 interface StateProps {
   firstName: string,
@@ -10,12 +11,19 @@ interface StateProps {
   history : History
 }
 
+const WelcomeText = styled.h3`
+      margin-top: 5%;
+      text-align: center;
+`;
+
+
+
 function EducationPage(props: StateProps) {
   const {firstName, history, lastName} = props
     return (
       <div className="EducationPage">
         <img src={Logo} alt="logo" id="logo-profile"/>
-        {firstName === "" ? history.push('/') :  <h3 id="welcome">Welcome to {firstName} {lastName}'s Education Page</h3>}
+        {firstName === "" ? history.push('/') :  <WelcomeText  id="welcome">Welcome to {firstName} {lastName}'s Education Page</WelcomeText >}
         <EducationList />
       </div>
     );

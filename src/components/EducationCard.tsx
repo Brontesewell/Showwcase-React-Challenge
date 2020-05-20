@@ -10,7 +10,7 @@ import { color, ColorProps, space } from 'styled-system'
 interface IProps {
   selectedEducation: any,
   deleteStudy: typeof deleteStudy,
-  clearSelectedEducation: any
+  clearSelectedEducation:  () => void;
 }
 
 function EducationCard (props: IProps) {
@@ -36,16 +36,10 @@ function EducationCard (props: IProps) {
     padding-top: 1rem
   `;
 
-  const AwardDiv = styled.div`
-      min-width: 105px;
-      float: left;
-      ${space}
-  `;
-
   const Description = styled.p`
     padding-top: 2rem
     margin-bottom: 5%;
-    text-align: justify;
+    text-align: justify
   `;
 
   const Button = styled.button<ColorProps>`

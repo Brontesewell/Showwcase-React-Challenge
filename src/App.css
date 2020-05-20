@@ -98,25 +98,6 @@
 }
 
 
-#firstname{
-  padding: 10px;
-  border-radius: 5px;
-  border-color:  #555555;
-}
-
-#lastname{
-  padding: 10px;
-  margin-left: 5px;
-  margin-right: 19px;
-  border-radius: 5px;
-  border-color:  #555555;
-}
-
-#welcome{
-  margin-top: 5%;
-  text-align: center;
-}
-
 #back-button{
   margin-top: 20%;
   margin-left: 45%;

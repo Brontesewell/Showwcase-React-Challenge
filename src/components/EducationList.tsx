@@ -13,19 +13,20 @@ import { color, ColorProps, space } from 'styled-system'
 
 interface Props {
     setEducation: typeof setEducation,
+    selectedEducation: any
     setSelectedEducation: typeof setSelectedEducation,
     clearSelectedEducation: typeof clearSelectedEducation,
     education: any,
-    selectedEducation: any
 }
 
 interface State {
     openModal: Boolean, 
     school: string; 
     degree: string; 
+    // \/ Array<string>
+    awards: any;
     startYear: string; 
     endYear: string; 
-    awards: any;
     grade: string;
     description: string;
     schoolsSearch: any;
@@ -61,7 +62,7 @@ class EducationList extends React.Component<Props, State> {
         let awardsValue = (document.getElementById("awards") as HTMLInputElement).value;
         if (awardsValue!== "") {
               var newAward = {
-                    text: awardsValue,
+                  text: awardsValue,
                   key: Math.random()
               }; 
             console.log(newAward)

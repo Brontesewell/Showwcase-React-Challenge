@@ -7,7 +7,7 @@ import {
 } from '../actions/showwcaseActions';
 import { History } from 'history';
 import styled from 'styled-components'
-import { color, ColorProps, space } from 'styled-system'
+import { color, ColorProps } from 'styled-system'
 
 
 interface StateProps {
@@ -19,8 +19,21 @@ interface StateProps {
 }
 
 const Button = styled.button<ColorProps>`
-  ${color}
-`
+${color}
+`;
+const FirstNameInput = styled.input`
+      padding: 10px;
+      border-radius: 5px;
+      border-color:  #555555;
+`;
+
+const LastNameInput = styled.input`
+      padding: 10px;
+      margin-left: 5px;
+      margin-right: 19px;
+      border-radius: 5px;
+      border-color:  #555555;
+`;
 
 
 class LandingPage extends React.Component<StateProps> {
@@ -58,8 +71,8 @@ class LandingPage extends React.Component<StateProps> {
                     <form onSubmit={this.handleSubmit}>
 
                         <div id="landing-page-input">
-                        <input type='text' id="firstname" name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></input>
-                            <input type='text' id="lastname" name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></input>
+                            <FirstNameInput type='text' name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></FirstNameInput>
+                            <LastNameInput type='text' name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></LastNameInput>
                             <Button type="submit" color="white" bg="black" className="button">Submit</Button>
                         </div>
                 </form>
