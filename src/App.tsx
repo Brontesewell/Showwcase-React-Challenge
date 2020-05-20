@@ -3,19 +3,55 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import EducationPage from './components/EducationPage'
 import LandingPage from './components/LandingPage'
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import rootReducer from './reducers/combineReducers';
+import { createStore, applyMiddleware, compose } from 'redux';
+
+// import rootReducer from './reducers';
+// import { persistStore, persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage'
+// import { PersistGate } from 'redux-persist/lib/integration/react';
+// import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+// const persistConfig = {
+//   key: 'root',
+//   storage: storage,
+//   stateReconciler: autoMergeLevel2,
+//   whitelist: ['movies', 'subject']
+//   };
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const store = createStore(
+//   persistedReducer, composeEnhancers(
+//     applyMiddleware(...middleware)
+//   ));
+// const persistor = persistStore(store);
+
+
+const middleware = [thunk];
+const initialState = {};
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
+
 
 function App() {
   return (
-    <div className="App">
+    <Provider store={store}>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
       <Router>
-          <div>
+        <div>
           <Switch>
-                <Route exact path='/' component={LandingPage}/>
-                <Route exact path='/profile' component={EducationPage}/>
-            </Switch>
-          </div>
-        </Router>
-    </div>
+            <Route exact path='/' component={LandingPage}/>
+            <Route exact path='/profile' component={EducationPage}/>
+          </Switch>
+        </div>
+      </Router>
+      {/* </PersistGate> */}
+    </Provider>
   );
 }
 
