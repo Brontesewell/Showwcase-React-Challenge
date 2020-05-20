@@ -40,6 +40,7 @@ function EducationCard (props: IProps) {
     padding-top: 2rem
     margin-bottom: 5%;
     text-align: justify
+    ${space}
   `;
 
   const Button = styled.button<ColorProps>`

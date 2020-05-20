@@ -9,7 +9,7 @@ import {
     clearSelectedEducation,
 } from '../actions/showwcaseActions';
 import styled from 'styled-components'
-import { color, ColorProps, space } from 'styled-system'
+import { color, ColorProps } from 'styled-system'
 
 interface Props {
     setEducation: typeof setEducation,

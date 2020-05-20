@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootReducer from './reducers/combineReducers';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 
 //  IF I WANTED TO USE REDUX PERSIST \/

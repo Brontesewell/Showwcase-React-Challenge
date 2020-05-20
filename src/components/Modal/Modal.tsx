@@ -22,6 +22,7 @@ const ModalActions =  styled.section`
 display: flex;
 justify-content: flex-end;
 padding: 1rem;
+${space}
 `
 
 const Button = styled.button<ColorProps>`
@@ -49,7 +50,7 @@ const Modal: FC<Props> = ({ onConfirm, title, onCancel, confirmText, children }:
       <Button type="submit" color="white" bg="black" className="button" onClick={onCancel}>
           Cancel
       </Button>
-      
+
       < Button type="submit" color="white" bg="black" className="button" onClick={onConfirm}>
         {confirmText}
       </Button> 
