@@ -4,7 +4,7 @@ import { space } from 'styled-system';
 import React, { FC } from 'react'
 
 const ModalHeader = styled.header`
-padding: 1.5rem;
+padding: 1rem;
 background: #a6a6a6;;
 color: white;
 `
@@ -17,13 +17,14 @@ font-size: 1.45rem;
 const ModalContent = styled.section`
 padding: 1rem
 `
+
 const ModalActions =  styled.section`
 display: flex;
 justify-content: flex-end;
 padding: 1rem;
 `
 
-interface IProps {
+interface Props {
   title: String
   onCancel:  () => void;
   confirmText: String;
@@ -31,7 +32,7 @@ interface IProps {
   onConfirm: any;
 }
 
-const Modal: FC<IProps> = ({ onConfirm, title, onCancel, confirmText, children }: IProps) => {
+const Modal: FC<Props> = ({ onConfirm, title, onCancel, confirmText, children }: Props) => {
   return (
    
   <div className="modal">

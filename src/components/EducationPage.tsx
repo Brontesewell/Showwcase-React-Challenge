@@ -11,10 +11,11 @@ interface StateProps {
 }
 
 function EducationPage(props: StateProps) {
+  const {firstName, history, lastName} = props
     return (
       <div className="EducationPage">
         <img src={Logo} alt="logo" id="logo-profile"/>
-        {props.firstName === "" ? props.history.push('/') :  <h3 id="welcome">Welcome to {props.firstName} {props.lastName}'s Education Page</h3>}
+        {firstName === "" ? history.push('/') :  <h3 id="welcome">Welcome to {firstName} {lastName}'s Education Page</h3>}
         <EducationList />
       </div>
     );

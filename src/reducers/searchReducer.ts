@@ -27,9 +27,9 @@ export default function showwcaseReducer(
     case SET_FIRST_NAME:
       return {...state, firstName: action.data}
 
-      case SET_EDUCATION:
-        const newArr = state.education.concat(action.data)
-        return {...state, education: newArr}
+    case SET_EDUCATION:
+      const newArr = state.education.concat(action.data)
+      return {...state, education: newArr}
 
     case DELETE_STUDY:
       const deletedArray = state.education.filter(m => m !== action.data)

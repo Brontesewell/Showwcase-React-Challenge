@@ -9,7 +9,7 @@ import {
     clearSelectedEducation,
 } from '../actions/showwcaseActions';
 
-interface IProps {
+interface Props {
     setEducation: typeof setEducation,
     setSelectedEducation: typeof setSelectedEducation,
     clearSelectedEducation: typeof clearSelectedEducation,
@@ -17,7 +17,7 @@ interface IProps {
     selectedEducation: any
 }
 
-interface IState {
+interface State {
     openModal: Boolean, 
     school: string; 
     degree: string; 
@@ -30,9 +30,9 @@ interface IState {
     loading: Boolean
 }
 
-class EducationList extends React.Component<IProps, IState> {
+class EducationList extends React.Component<Props, State> {
 
-    constructor(props: IProps) {
+    constructor(props: Props) {
       super(props);
       this.state = {
         openModal: false, 
@@ -170,7 +170,16 @@ class EducationList extends React.Component<IProps, IState> {
   
     modalCancelHandler = () => {
         this.props.clearSelectedEducation()
-        this.setState({ openModal: false});
+        this.setState({ 
+            openModal: false,
+            awards: [],
+            degree: "",
+            description: "",
+            endYear: "",
+            school: "",
+            startYear: "",
+            grade: "",
+        });
     };
   
     clearSelectedEducation = () => {
@@ -190,7 +199,7 @@ class EducationList extends React.Component<IProps, IState> {
                     </div>
 
                     <div className="right-column">
-                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
+                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><h4><i>Let's Get Started ↓</i></h4><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
                         : <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
                     
                     
@@ -207,11 +216,11 @@ class EducationList extends React.Component<IProps, IState> {
                             <div className="form-control">
                                   <label htmlFor="school">School: </label>
                                   <input type="text" name="school" id="school" onChange={this.handleSchoolChange} />
-                                  <p>{this.state.loading ? <div className="loader"></div> : (this.state.schoolsSearch.slice(0, 10)).map((i: any) => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>)}</p>
+                                  <div className="schools-dropdown">{this.state.loading ? <div className="loader"></div> : (this.state.schoolsSearch.slice(0, 10)).map((i: any) => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>)}</div>
                             </div>
 
                             {/* Degree Input + Label */}
-                            <div className="form-control">
+                            <div id="degree-input-div" className="form-control">
                                 <label htmlFor="degree">Degree: </label>
                                 <input type="text" name="degree" onChange={this.onHandleChange}/>
                             </div>
@@ -222,15 +231,6 @@ class EducationList extends React.Component<IProps, IState> {
                                 <input type="text" name="grade" placeholder='e.g. 98%' onChange={this.onHandleChange}/>
                             </div>
 
-                            {/* Awards Input + Label */}
-                            <div className="form-control">    
-                                <form onSubmit={this.addAwardsClick}>
-                                <label htmlFor="awards">Awards: </label>
-                                <input type="text" name="awards" id="awards"/>
-                                <button id="add-awards" type="submit" >Add</button>
-                                </form>
-                                {this.state.awards.length > 0 ? this.state.awards.map((i:any) => (<a>{i.text}, </a>)): null}
-                            </div>
 
                             {/* Start Yr Input + Label */}
                             <div className="form-control">
@@ -247,11 +247,21 @@ class EducationList extends React.Component<IProps, IState> {
                             {/* Description Yr Input + Label */}
                             <div className="form-control">
                                 <label htmlFor="description">Description: </label>
-                                <textarea name="description" onChange={this.onDescriptionChange}/>
+                                <textarea id="description-input" name="description" placeholder='write your description here....' onChange={this.onDescriptionChange}/>
                             </div>
 
                             </form>
 
+                            {/* Awards Input + Label */}
+                            <div className="awards-form-control">    
+                                <form onSubmit={this.addAwardsClick}>
+                                <label htmlFor="awards">Awards: </label>
+                                <br></br>
+                                <input type="text" name="awards" id="awards"/>
+                                <button id="add-awards" type="submit" >Add</button>
+                                </form>
+                                {this.state.awards.length > 0 ? this.state.awards.map((i:any) => (<a>{i.text}, </a>)): null}
+                            </div>
                     </Modal>)}
             
             </div>

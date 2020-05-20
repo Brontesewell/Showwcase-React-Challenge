@@ -3,14 +3,14 @@
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     position: fixed;
-    top: 5vh;
+    top: 1vh;
     left: 5%;
     z-index: 100;
   }
   
-  @media (min-width: 768px) {
+  @media (min-width: 868px) {
     .modal {
-      width: 30rem;
-      left: calc((100% - 30rem) / 2);
+      width: 39rem;
+      left: calc((100% - 39rem) / 2);
     }
   }

@@ -25,6 +25,7 @@ export const SET_LAST_NAME = 'SET_LAST_NAME';
 export const SET_EDUCATION = 'SET_EDUCATION';
 export const SET_SELECTED_EDUCATION = 'SET_SELECTED_EDUCATION';
 export const CLEAR_SELECTED_EDUCATION = 'CLEAR_SELECTED_EDUCATION';
+
     
 interface DeleteStudyAction {
     type: typeof DELETE_STUDY

@@ -36,14 +36,15 @@ class LandingPage extends React.Component<StateProps> {
           this.setState({
             firstName : newValue
           })
-        } else 
-        this.setState({
-          lastName : newValue
-        })
+        } else if (e.currentTarget.name === "lastName") {
+          this.setState({
+            lastName : newValue
+          })
       }
+    }
 
     render() {
-      console.log(this.props.firstName)
+      const {firstName, lastName} = this.state
     return (
       <div className="LandingPage">
                     <img src={Logo} alt="logo" id="logo"/>
@@ -51,8 +52,8 @@ class LandingPage extends React.Component<StateProps> {
                     <form onSubmit={this.handleSubmit}>
 
                         <div id="landing-page-input">
-                        <input type='text' id="firstname" name="firstName" placeholder='First Name' value={this.state.firstName} onChange={this.handleChange}></input>
-                            <input type='text' id="lastname" name="lastName" placeholder='Last Name' value={this.state.lastName} onChange={this.handleChange}></input>
+                        <input type='text' id="firstname" name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></input>
+                            <input type='text' id="lastname" name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></input>
                             <button type="submit" className="button">Submit</button>
                         </div>
                 </form>

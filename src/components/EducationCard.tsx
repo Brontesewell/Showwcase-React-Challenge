@@ -33,6 +33,7 @@ function EducationCard (props: IProps) {
 
   const AwardTitle = styled.h4`
     margin-top: 1%;
+    padding-top: 1rem
   `;
 
   const AwardDiv = styled.div`
@@ -42,9 +43,11 @@ function EducationCard (props: IProps) {
   `;
 
   const Description = styled.p`
-    margin-top: 10%;
+  padding-top: 2rem
     margin-bottom: 5%;
   `;
+
+
 
   const deleteClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     event.preventDefault();
@@ -62,9 +65,11 @@ function EducationCard (props: IProps) {
 
      <Grade><strong>Average Grade:</strong> {grade} </Grade>
 
-    <AwardTitle>Awards: </AwardTitle> {awards.map((a: any) => <AwardDiv><ul> <li>{a.text}</li></ul></AwardDiv>)}
+    <AwardTitle>Awards: </AwardTitle> {awards.map((a: any) => <ul> <li>{a.text}</li></ul>)} 
     
-    <Description><strong>Description:</strong> {description}</Description>
+     
+      <Description><strong>Description:</strong> {description}</Description>
+
     
     <button className="button" onClick={deleteClick}>Delete</button>
     

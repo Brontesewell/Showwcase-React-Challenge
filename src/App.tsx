@@ -9,6 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootReducer from './reducers/combineReducers';
 import { createStore, applyMiddleware, compose } from 'redux';
 
+
+//  IF I WANTED TO USE REDUX PERSIST \/
+
 // import rootReducer from './reducers';
 // import { persistStore, persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage'
@@ -18,7 +21,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 //   key: 'root',
 //   storage: storage,
 //   stateReconciler: autoMergeLevel2,
-//   whitelist: ['movies', 'subject']
+
+// I could create a current user object and persist this and then have a logout/back button 
+// where I clear the state of CurrentUser and uptdate again when they sign up
+
+//   whitelist: ['currentUser']
 //   };
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
 // const store = createStore(
