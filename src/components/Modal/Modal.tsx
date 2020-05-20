@@ -25,15 +25,13 @@ padding: 1rem;
 
 interface IProps {
   title: String
-  canCancel: any
-  canConfirm: any
   onCancel:  () => void;
   confirmText: String;
   children: any
   onConfirm: any;
 }
 
-const Modal: FC<IProps> = ({ onConfirm, title, canCancel, canConfirm, onCancel, confirmText, children }: IProps) => {
+const Modal: FC<IProps> = ({ onConfirm, title, onCancel, confirmText, children }: IProps) => {
   return (
    
   <div className="modal">

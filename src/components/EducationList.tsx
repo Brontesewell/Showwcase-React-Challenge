@@ -157,7 +157,8 @@ class EducationList extends React.Component<IProps, IState> {
 
 
     handleClickedSchool = (clickedSchool: any) => {
-        console.log(clickedSchool)
+        // console.log(clickedSchool)
+        (document.getElementById("school") as HTMLInputElement).value = clickedSchool.name;
         this.setState({
           school: clickedSchool.name,
           schoolsSearch: []
@@ -183,8 +184,7 @@ class EducationList extends React.Component<IProps, IState> {
     };
       
     render() {
-       console.log(this.props.selectedEducation)
-        const { awards, degree, description, endYear, school, grade, startYear} = this.state
+
         return (
             <div className="EducationList">
                 <div className="row">
@@ -197,15 +197,12 @@ class EducationList extends React.Component<IProps, IState> {
 
                     <div className="right-column">
                         { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
-                        :
-                    <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
+                        : <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
                     
                     
                     {(this.state.openModal ) && <Backdrop />}
                     {this.state.openModal && (<Modal
                         title="Add Education"
-                        canCancel
-                        canConfirm
                         onCancel={this.modalCancelHandler}
                         onConfirm={this.onConfirmClick}
                         confirmText="Confirm"
@@ -215,7 +212,7 @@ class EducationList extends React.Component<IProps, IState> {
                             {/* School Search Input + Label */}
                             <div className="form-control">
                                   <label htmlFor="school">School: </label>
-                                  <input type="text" name="school" value={school} onChange={this.handleSchoolChange} />
+                                  <input type="text" name="school" id="school" onChange={this.handleSchoolChange} />
                                   <p>{this.state.loading ? <div className="loader"></div> : (this.state.schoolsSearch.slice(0, 10)).map((i: any) => <p className="school-select" onClick={() => this.handleClickedSchool(i)}>{i.name}</p>)}</p>
                             </div>
 
