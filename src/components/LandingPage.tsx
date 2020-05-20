@@ -7,17 +7,15 @@ import {
   setFirstName,
   setLastName,
 } from '../actions/showwcaseActions';
+import { History } from 'history';
 
-// const actions = {
-//   setFirstName: (): string => '',
-//   setLastName: (): string => '',
-// }
 
 interface StateProps {
   firstName: string,
   lastName: string,
   setLastName: typeof setLastName,
   setFirstName: typeof setFirstName,
+  history : History
 }
 
 export type UpdateMessageParam = React.SyntheticEvent<{ value: string }>;
@@ -33,7 +31,7 @@ class LandingPage extends React.Component<StateProps> {
         event.preventDefault();
         this.props.setFirstName(this.state.firstName)
         this.props.setLastName(this.state.lastName)
-
+        this.props.history.push('/profile')
     };
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
