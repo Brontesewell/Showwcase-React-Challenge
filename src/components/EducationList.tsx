@@ -89,6 +89,7 @@ class EducationList extends React.Component<Props, State> {
             grade: this.state.grade
         }
         this.props.setEducation(Education)
+        this.props.setSelectedEducation(Education)
         this.setState({
             openModal: false,
             awards: [],
