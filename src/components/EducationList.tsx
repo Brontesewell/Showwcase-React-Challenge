@@ -1,6 +1,7 @@
 import React from 'react'
 import Modal from './Modal/Modal'
 import Backdrop from './Backdrop/Backdrop'
+import EducationCard from './EducationCard'
 import { connect } from 'react-redux'
 import {
     setEducation,
@@ -12,7 +13,7 @@ import {
 interface IProps {
     setEducation: typeof setEducation,
     clearSchoolSearch: typeof clearSchoolSearch,
-    education: object,
+    education: any,
     searchSchools: []
 }
 
@@ -123,6 +124,29 @@ class EducationList extends React.Component<IProps, IState> {
         }
     }
 
+    // handleSchoolChange = (e) => {
+    //     const {name, value} = e.target
+    //     this.props.fetchAllSchools(value)
+    //     this.setState({
+    //         school: value
+    //     })
+    // }
+
+    // handleClickedSchool = (clickedSchool: Object) => {
+    //     this.setState({
+    //       school: clickedSchool.name
+    //     })
+    //     this.props.clearSchoolSearch()
+    //   }
+  
+  
+      setSelectedEducation = (clickedEducation: Object) => {
+          console.log(clickedEducation)
+        // this.setState({
+        //     selectedEducation: clickedEducation
+        // });
+      };
+
     createEducationHandler = () => {
         this.setState({ openModal: true });
       };
@@ -144,13 +168,14 @@ class EducationList extends React.Component<IProps, IState> {
               
               <div className="left-column">
                <h2 id="education-title">Education</h2>
-               <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> 
-                 
+               {this.state.selectedEducation !== null ? <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> : null}
+               {this.props.education.map((education: any) => <h3 id="side-nav-titles" onClick={() => this.setSelectedEducation(education)}>{education.school}</h3> ).reverse()}
               </div>
 
               <div className="right-column">
-                <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
-            </div>
+              { this.state.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
+                       :
+                        <EducationCard selectedEducation={this.state.selectedEducation} clearSelectedEducation={this.clearSelectedEducation}/> } 
             {(this.state.openModal ) && <Backdrop />}
             {this.state.openModal && (<Modal
                 title="Add Education"
@@ -214,6 +239,7 @@ class EducationList extends React.Component<IProps, IState> {
 
                 </Modal>)}
         
+            </div>
         </div>
 
       </div>
@@ -224,7 +250,7 @@ class EducationList extends React.Component<IProps, IState> {
 const mapStateToProps = (state: any) => ({
     education: state.showwcase.education,
     searchSchools: state.showwcase.searchSchools,
-  });
+});
   
   
 export default connect(mapStateToProps,
