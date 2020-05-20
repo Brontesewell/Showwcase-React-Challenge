@@ -1,6 +1,6 @@
 import './Modal.css';
 import styled from 'styled-components';
-import { space } from 'styled-system';
+import { color, ColorProps, space } from 'styled-system'
 import React, { FC } from 'react'
 
 const ModalHeader = styled.header`
@@ -24,6 +24,10 @@ justify-content: flex-end;
 padding: 1rem;
 `
 
+const Button = styled.button<ColorProps>`
+${color}
+`
+
 interface Props {
   title: String
   onCancel:  () => void;
@@ -42,12 +46,15 @@ const Modal: FC<Props> = ({ onConfirm, title, onCancel, confirmText, children }:
     <ModalContent >{children} </ModalContent>
 
     <ModalActions>
-        <button className="button" onClick={onCancel}>
+      <Button type="submit" color="white" bg="black" className="button" onClick={onCancel}>
           Cancel
-        </button>
-        <button className="button" onClick={onConfirm}>
-            {confirmText}
-        </button>
+      </Button>
+      
+      < Button type="submit" color="white" bg="black" className="button" onClick={onConfirm}>
+        {confirmText}
+      </Button> 
+            
+        
     </ModalActions>
   </div>
   )

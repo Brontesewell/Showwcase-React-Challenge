@@ -8,6 +8,8 @@ import {
     setSelectedEducation,
     clearSelectedEducation,
 } from '../actions/showwcaseActions';
+import styled from 'styled-components'
+import { color, ColorProps, space } from 'styled-system'
 
 interface Props {
     setEducation: typeof setEducation,
@@ -29,6 +31,10 @@ interface State {
     schoolsSearch: any;
     loading: Boolean
 }
+
+const Button = styled.button<ColorProps>`
+  ${color}
+`
 
 class EducationList extends React.Component<Props, State> {
 
@@ -129,7 +135,7 @@ class EducationList extends React.Component<Props, State> {
 
     handleSchoolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const schoolInput = e.target.value
-        this.fetchAllSchool(schoolInput)
+        this.fetchAllSchools(schoolInput)
         this.setState({
             school: schoolInput,
             loading: true,
@@ -137,7 +143,7 @@ class EducationList extends React.Component<Props, State> {
     }
 
 
-    fetchAllSchool = (subject: string) => {
+    fetchAllSchools = (subject: string) => {
         fetch(`http://universities.hipolabs.com/search?name=${subject}`)
         .then(res => res.json())
         .then((data: any) => {
@@ -194,12 +200,12 @@ class EducationList extends React.Component<Props, State> {
               
                     <div className="left-column">
                         <h2 id="education-title">Education</h2>
-                        {this.props.selectedEducation !== null ? <button id="new-education-btn" className="button" onClick={this.createEducationHandler} >Add new Education</button> : null}
+                        {this.props.selectedEducation !== null ? <Button type="submit" color="white" bg="black" className="button" id="new-education-btn" onClick={this.createEducationHandler}>Add New Education</Button> : null}
                         {this.props.education.map((education: any) => <h3 id="side-nav-titles" onClick={() => this.setSelectedEducation(education)}>{education.school}</h3> ).reverse()}
                     </div>
 
                     <div className="right-column">
-                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><h4><i>Let's Get Started ↓</i></h4><button className="button" onClick={this.createEducationHandler} >Add My Education</button></div> 
+                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><h4><i>Let's Get Started ↓</i></h4><Button type="submit" color="white" bg="black" className="button" onClick={this.createEducationHandler}>Add New Education</Button></div> 
                         : <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
                     
                     

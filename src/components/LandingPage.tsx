@@ -6,6 +6,8 @@ import {
   setLastName,
 } from '../actions/showwcaseActions';
 import { History } from 'history';
+import styled from 'styled-components'
+import { color, ColorProps, space } from 'styled-system'
 
 
 interface StateProps {
@@ -15,6 +17,10 @@ interface StateProps {
   setFirstName: typeof setFirstName,
   history : History
 }
+
+const Button = styled.button<ColorProps>`
+  ${color}
+`
 
 
 class LandingPage extends React.Component<StateProps> {
@@ -54,7 +60,7 @@ class LandingPage extends React.Component<StateProps> {
                         <div id="landing-page-input">
                         <input type='text' id="firstname" name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></input>
                             <input type='text' id="lastname" name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></input>
-                            <button type="submit" className="button">Submit</button>
+                            <Button type="submit" color="white" bg="black" className="button">Submit</Button>
                         </div>
                 </form>
       </div>

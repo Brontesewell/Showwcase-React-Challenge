@@ -60,9 +60,7 @@
 }
 
 .button {
-  background-color: black; /* Green */
   border: none;
-  color: white;
   padding: 10px 22px;
   text-align: center;
   text-decoration: none;
@@ -81,7 +79,7 @@
 }
 
 #add-awards{
-  background-color: black; /* Green */
+  background-color: black; 
   border: none;
   color: white;
   padding: 4px 10px;

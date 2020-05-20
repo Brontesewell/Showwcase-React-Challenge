@@ -4,7 +4,7 @@ import {
 } from '../actions/showwcaseActions';
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { space } from 'styled-system'
+import { color, ColorProps, space } from 'styled-system'
 
 
 interface IProps {
@@ -43,11 +43,14 @@ function EducationCard (props: IProps) {
   `;
 
   const Description = styled.p`
-  padding-top: 2rem
+    padding-top: 2rem
     margin-bottom: 5%;
+    text-align: justify;
   `;
 
-
+  const Button = styled.button<ColorProps>`
+  ${color}
+  `
 
   const deleteClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     event.preventDefault();
@@ -68,10 +71,10 @@ function EducationCard (props: IProps) {
     <AwardTitle>Awards: </AwardTitle> {awards.map((a: any) => <ul> <li>{a.text}</li></ul>)} 
     
      
-      <Description><strong>Description:</strong> {description}</Description>
+    <Description><strong>Description:</strong> {description}</Description>
 
-    
-    <button className="button" onClick={deleteClick}>Delete</button>
+
+    <Button type="submit" color="white" bg="black" className="button" onClick={deleteClick}>Delete</Button>
     
     </EducationCard>
   );
