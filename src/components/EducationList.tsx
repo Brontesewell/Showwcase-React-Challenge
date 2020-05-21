@@ -227,7 +227,7 @@ class EducationList extends React.Component<Props, State> {
                     </LeftColumn> 
 
                     <RightColumn>
-                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to Showwcase</h1><h4><i>Let's Get Started ↓</i></h4><Button type="submit" color="white" bg="black" className="button" onClick={this.createEducationHandler}>Add New Education</Button></div> 
+                        { this.props.selectedEducation == null ? <div className="welcome-title-box"><h1>Welcome to ShowwCase</h1><h4><i>Let's Get Started ↓</i></h4><Button type="submit" color="white" bg="black" className="button" onClick={this.createEducationHandler}>Add New Education</Button></div> 
                         : <EducationCard clearSelectedEducation={this.clearSelectedEducation}/> } 
                     
                     
