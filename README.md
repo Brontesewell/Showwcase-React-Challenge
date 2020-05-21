@@ -1,3 +1,6 @@
+# To start the web application run **npm install** then **npm start**
+
+
 # Showwcase Developer Challenge
 
 ## General idea

@@ -25,6 +25,7 @@ const FirstNameInput = styled.input`
       padding: 10px;
       border-radius: 5px;
       border-color:  #555555;
+      font-size: 15px;
 `;
 
 const LastNameInput = styled.input`
@@ -33,54 +34,8 @@ const LastNameInput = styled.input`
       margin-right: 19px;
       border-radius: 5px;
       border-color:  #555555;
+      font-size: 15px;
 `;
-
-
-// class LandingPage extends React.Component<StateProps> {
-//     state = {
-//       firstName: "",
-//       lastName: ""
-//     };
-
-//     handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//         event.preventDefault();
-//         this.props.setFirstName(this.state.firstName)
-//         this.props.setLastName(this.state.lastName)
-//         this.props.history.push('/profile')
-//     };
-
-//     handleChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
-//       const newValue = e.currentTarget.value;
-//       if (e.currentTarget.name === "firstName"){
-//           this.setState({
-//             firstName : newValue
-//           })
-//         } else if (e.currentTarget.name === "lastName") {
-//           this.setState({
-//             lastName : newValue
-//           })
-//       }
-//     }
-
-//     render() {
-//       const {firstName, lastName} = this.state
-//     return (
-//       <div className="LandingPage">
-//                     <img src={Logo} alt="logo" id="logo"/>
-//                     <h4 id="tag-line">Connect, share, showcase projects, and get hired!</h4>
-//                     <form onSubmit={this.handleSubmit}>
-
-//                         <div id="landing-page-input">
-//                             <FirstNameInput type='text' name="firstName" placeholder='First Name' value={firstName} onChange={this.handleChange}></FirstNameInput>
-//                             <LastNameInput type='text' name="lastName" placeholder='Last Name' value={lastName} onChange={this.handleChange}></LastNameInput>
-//                             <Button type="submit" color="white" bg="black" className="button">Submit</Button>
-//                         </div>
-//                 </form>
-//       </div>
-//     );
-//     };
-//   };
-
 
 
   function LandingPage(props: StateProps) {
