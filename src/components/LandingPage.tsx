@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 // import React from 'react';
 import Logo from '../logo.png'
 import { connect } from 'react-redux'
@@ -8,7 +9,6 @@ import {
 import { History } from 'history';
 import styled from 'styled-components'
 import { color, ColorProps } from 'styled-system'
-import React, { useState } from "react";
 
 interface StateProps {
   firstName: string,
