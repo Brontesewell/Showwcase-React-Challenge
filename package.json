@@ -19,7 +19,7 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/styled-components": "^5.1.0",
     "@types/styled-system": "^5.1.9",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cross-fetch": "^3.0.4",
     "history": "^4.10.1",
     "react": "^16.13.1",
